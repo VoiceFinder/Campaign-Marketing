@@ -59,18 +59,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         // Refresh Token을 Redis에 저장
         jwtUtil.storeRefreshToken(user.getEmail(), refreshToken);
 
-        // Access Token을 Client에 반환
-//        response.addHeader("Authorization", accessToken);
-
         // Access Token을 쿠키에 저장
         jwtUtil.addJwtToCookie(accessToken, response);
     }
 
-//    @Override
-//    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-//        log.info("로그인 실패");
-//        throw new CustomException(ErrorCode.LOGIN_FAILED);
-//    }
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {

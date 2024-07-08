@@ -53,14 +53,18 @@ public class CampaignController {
         return campaignService.getCampaigns(page, size, sortBy, isAsc, keyword);
     }
 
-    @GetMapping("/recommend")
-    public Mono<Page<CampaignResponseDto>> getRecommendedCampaigns(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-        User user = userDetails.getUser();
-        return campaignService.getRecommendedCampaigns(user);
+//    @GetMapping("/recommend")
+//    public Mono<Page<CampaignResponseDto>> getRecommendedCampaigns(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+//        User user = userDetails.getUser();
+//        return campaignService.getRecommendedCampaigns(user);
+//    }
+    @GetMapping("/recommend")  //for 게스트
+    public Page<CampaignResponseDto> getRecentCampaigns(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return campaignService.getRecentCampaigns();
     }
 
     @GetMapping("/recent")  //for 게스트
-    public Page<CampaignResponseDto> getRecentCampaigns(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public Page<CampaignResponseDto> getRecommendCampaigns(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         return campaignService.getRecentCampaigns();
     }
 

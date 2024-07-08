@@ -39,8 +39,8 @@ import java.util.Map;
 @Transactional
 public class CampaignService {
 
-    @Autowired
-    private WebClient webClient;
+//    @Autowired
+//    private WebClient webClient;
 
     private final CampaignRepository campaignRepository;
     private final MarketRepository marketRepository;
@@ -92,32 +92,32 @@ public class CampaignService {
         );
     }
 
-    public Mono<Page<CampaignResponseDto>> getRecommendedCampaigns(User user) {
-        Pageable pageable = PageRequest.of(0, 3);
-        Map<String, Object> requestBody = new HashMap<>();
-
-        requestBody.put("user_id", user.getId());
-        requestBody.put("cant_foods", user.getCant_foods());
-        requestBody.put("fav_foods", user.getFav_foods());
-
-        //requestBody.put("gender", user.getGender());
-//        LocalDate currentData = LocalDate.now();
-//        int age = currentData.getYear() - user.getBirthDate().getYear() + 1;
-        //requestBody.put("age", age);
-        //requestBody.put("considerations", user.getConsiderations());
-        //return campaignRepository.findAll(pageable).map(CampaignResponseDto::new);
-        return webClient.post()
-                .uri("/recommend")
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(requestBody))
-                .retrieve()
-                .bodyToMono(CampaignRecommendResponseDto.class)
-                .flatMapMany(response -> Flux.fromIterable(response.getIds()))
-                .flatMap(this::findCampaignByMarketId)
-                .map(CampaignResponseDto::new)
-                .collectList()
-                .map(list -> new PageImpl<>(list, pageable, list.size()));
-    }
+//    public Mono<Page<CampaignResponseDto>> getRecommendedCampaigns(User user) {
+//        Pageable pageable = PageRequest.of(0, 3);
+//        Map<String, Object> requestBody = new HashMap<>();
+//
+//        requestBody.put("user_id", user.getId());
+//        requestBody.put("cant_foods", user.getCant_foods());
+//        requestBody.put("fav_foods", user.getFav_foods());
+//
+//        //requestBody.put("gender", user.getGender());
+////        LocalDate currentData = LocalDate.now();
+////        int age = currentData.getYear() - user.getBirthDate().getYear() + 1;
+//        //requestBody.put("age", age);
+//        //requestBody.put("considerations", user.getConsiderations());
+//        //return campaignRepository.findAll(pageable).map(CampaignResponseDto::new);
+//        return webClient.post()
+//                .uri("/recommend")
+//                .contentType(MediaType.APPLICATION_JSON)
+//                .body(BodyInserters.fromValue(requestBody))
+//                .retrieve()
+//                .bodyToMono(CampaignRecommendResponseDto.class)
+//                .flatMapMany(response -> Flux.fromIterable(response.getIds()))
+//                .flatMap(this::findCampaignByMarketId)
+//                .map(CampaignResponseDto::new)
+//                .collectList()
+//                .map(list -> new PageImpl<>(list, pageable, list.size()));
+//    }
 
 
     private Mono<Campaign> findCampaignByMarketId(Long marketId) {

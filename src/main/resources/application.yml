@@ -4,8 +4,8 @@ spring:
       host: ${SPRING_REDIS_HOST}
       port: 6379
       password: ${SPRING_REDIS_PASSWORD}
-    python-server:
-      address: ${PYTHON_SERVER_ADDRESS}
+#    python-server:
+#      address: ${PYTHON_SERVER_ADDRESS}
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

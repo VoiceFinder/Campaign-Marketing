@@ -25,8 +25,15 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    @Autowired
-    private RedisUtil redisUtil;
+    private final RedisUtil redisUtil;
+    private Key key;
+    private final SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+
+    @Value("${jwt.secret.key}") // Base64 Encode 한 SecretKey
+    private String secretKey;
+
+    // 로그 설정
+    public static final Logger logger = LoggerFactory.getLogger("JWT 관련 로그");
 
     // Header KEY 값
     public static final String AUTHORIZATION_HEADER = "Authorization";
@@ -39,31 +46,20 @@ public class JwtUtil {
     private final long ACCESS_TOKEN_TIME = 60 * 60 * 1000L; // 60분
 //    private final long REFRESH_TOKEN_TIME = 3 * 60 * 1000L; // 3분(test)
 //    private final long ACCESS_TOKEN_TIME = 60 * 1000L; // 1분(test)
-    @Value("${jwt.secret.key}") // Base64 Encode 한 SecretKey
-    private String secretKey;
 
-    private Key key;
-    private final SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-
-    // 로그 설정
-    public static final Logger logger = LoggerFactory.getLogger("JWT 관련 로그");
+    public JwtUtil(RedisUtil redisUtil) {
+        this.redisUtil = redisUtil;
+    }
 
     @PostConstruct
     public void init() {
-
         byte[] bytes = Base64.getDecoder().decode(secretKey);
         key = Keys.hmacShaKeyFor(bytes);
     }
 
-    public void storeRefreshToken(String email, String refreshToken) {
-        redisUtil.setRefreshToken(email, refreshToken, REFRESH_TOKEN_TIME);
-    }
-
-
     // 토큰 생성
     public String createAccessToken(Long id, String email, Role role) {
         Date date = new Date();
-
         return BEARER_PREFIX +
                 Jwts.builder()
                         .setSubject(email) // 사용자 식별자값(ID)
@@ -89,20 +85,33 @@ public class JwtUtil {
                         .compact();
     }
 
-    // JWT Cookie 에 저장
     public void addJwtToCookie(String token, HttpServletResponse res) {
         try {
             token = URLEncoder.encode(token, "utf-8").replaceAll("\\+", "%20"); // Cookie Value 에는 공백이 불가능해서 encoding 진행
 
             Cookie cookie = new Cookie(AUTHORIZATION_HEADER, token); // Name-Value
             cookie.setPath("/");
-//            cookie.setHttpOnly(true);
-
-            // Response 객체에 Cookie 추가
             res.addCookie(cookie);
         } catch (UnsupportedEncodingException e) {
             logger.error(e.getMessage());
         }
+    }
+
+    // HttpServletRequest 에서 Cookie Value : JWT 가져오기
+    public String getTokenFromRequest(HttpServletRequest req) {
+        Cookie[] cookies = req.getCookies();
+        if(cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(AUTHORIZATION_HEADER)) {
+                    try {
+                        return URLDecoder.decode(cookie.getValue(), "UTF-8"); // Encode 되어 넘어간 Value 다시 Decode
+                    } catch (UnsupportedEncodingException e) {
+                        return null;
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     public String resolveToken(HttpServletRequest req) {
@@ -113,12 +122,8 @@ public class JwtUtil {
         return null;
     }
 
-    public String resolveRefreshToken(String token) {
-//        System.out.println("resolveRefreshToken = " + token);
-        if (token != null && token.startsWith(BEARER_PREFIX)) {
-            return token.substring(7);
-        }
-        return null;
+    public void storeRefreshToken(String email, String refreshToken) {
+        redisUtil.setRefreshToken(email, refreshToken, REFRESH_TOKEN_TIME);
     }
 
     public boolean validateToken(String token) {
@@ -140,30 +145,12 @@ public class JwtUtil {
         }
     }
 
-    // 토큰에서 사용자 정보 추출 (수정됨)
     public Claims getUserInfoFromToken(String token) {
         try {
             return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
         } catch (ExpiredJwtException e) {
             return e.getClaims(); // 만료된 토큰에서도 클레임을 반환
         }
-    }
-
-    // HttpServletRequest 에서 Cookie Value : JWT 가져오기
-    public String getTokenFromRequest(HttpServletRequest req) {
-        Cookie[] cookies = req.getCookies();
-        if(cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(AUTHORIZATION_HEADER)) {
-                    try {
-                        return URLDecoder.decode(cookie.getValue(), "UTF-8"); // Encode 되어 넘어간 Value 다시 Decode
-                    } catch (UnsupportedEncodingException e) {
-                        return null;
-                    }
-                }
-            }
-        }
-        return null;
     }
 
 }
