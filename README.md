@@ -109,12 +109,6 @@ GitHub Actions, Docker-Compose, AWS EC2를 통해 CI/CD 파이프라인을 구�
 <br>
 
 ## 비즈 웹
-### 메인 페이지
-<div align="center">
- <img src="/images/web_director_login.PNG" alt="web_director_login">
-</div>
-
-<br>
 
 ### 메인 페이지
 <img width="376" alt="image" src="https://github.com/user-attachments/assets/5cb7bce9-11a7-4f0d-8d85-17f8332ca3a9">
