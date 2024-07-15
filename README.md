@@ -5,7 +5,7 @@
 <img width="832" alt="image" src="https://github.com/user-attachments/assets/76a30f13-7fa6-4995-93f0-44f4a2ba28fa">
 
 
-## 💁‍♂️ Detail Role <a name = "role"></a>
+## Detail Role <a name = "role"></a>
 + [최창규](https://github.com/kyle4293)
   - Back-end, Front-end, DevOps
   - GitHub Actions CI/CD 구축
@@ -42,7 +42,7 @@
 
 ---
 
-# 📝 [목차](#index) <a name = "index"></a>
+# [목차](#index) <a name = "index"></a>
 
 - [개요](#outline)
 - [아키텍처](#structure)
@@ -54,7 +54,7 @@
 
 <br>
 
-# 📝 개요 <a name = "outline"></a>
+# 개요 <a name = "outline"></a>
 
 <details>
    <summary> 본문 확인 (👈 Click)</summary>
@@ -67,7 +67,7 @@
 
 <br>
 
-# 📈 아키텍처  <a name = "structure"></a>
+# 아키텍처  <a name = "structure"></a>
 ![voicefinder 아키텍처](https://github.com/user-attachments/assets/56e40f79-e574-44d4-a536-74367bf3567a)
 
 본 프로젝트는 AWS 기반의 클라우드 인프라를 활용하여 구축된 웹 서비스입니다.
@@ -75,7 +75,7 @@ GitHub Actions, Docker-Compose, AWS EC2를 통해 CI/CD 파이프라인을 구�
 
 <br>
 
-# 🎁 결과물  <a name = "outputs"></a>
+# 결과물  <a name = "outputs"></a>
 
 <details>
    <summary> 본문 확인 (👈 Click)</summary>
@@ -91,6 +91,7 @@ GitHub Actions, Docker-Compose, AWS EC2를 통해 CI/CD 파이프라인을 구�
 ### 로그인, 회원가입, 소셜로그인
 
 <img width="368" alt="image" src="https://github.com/user-attachments/assets/e20d0140-5b77-4c35-9560-fb565b74f29c">
+<br>
 <img width="338" alt="image" src="https://github.com/user-attachments/assets/af367829-7800-4877-a0b8-d00bee124675">
 
 
@@ -130,11 +131,12 @@ GitHub Actions, Docker-Compose, AWS EC2를 통해 CI/CD 파이프라인을 구�
 
 <br>
 </details>
+<br>
 
 # 📈 ERD <a name = "erd"></a>
 
 ![voicefinder-erd](https://github.com/user-attachments/assets/8fbc8d7f-17e9-4ed7-bb20-1229c841283f)
-
+<br>
 
 # 🔨 테스트 및 모니터링 <a name = "test"></a>
 
