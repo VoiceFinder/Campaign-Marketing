@@ -57,7 +57,7 @@
 # 개요 <a name = "outline"></a>
 
 <details>
-   <summary> 본문 확인 (👈 Click)</summary>
+   <summary> 본문 확인 (Click)</summary>
 <br />
 디지털 마케팅의 급부상과 함께, '체험단'의 개념은 소비자 경험을 통해 솔직하고 구체적인 리뷰를 생성하는 중요한 마케팅 전략으로 자리 잡고 있습니다.
 본 프로젝트는 체험단 고객의 데이터를 기반으로 그들이 관심을 가질만한 점포를 상단에 노출시키는 추천 시스템을 통해 체험단 마케팅의 효과를 극대화하는 데 목적이 있습니다.
@@ -78,7 +78,7 @@ GitHub Actions, Docker-Compose, AWS EC2를 통해 CI/CD 파이프라인을 구�
 # 결과물  <a name = "outputs"></a>
 
 <details>
-   <summary> 본문 확인 (👈 Click)</summary>
+   <summary> 본문 확인 (Click)</summary>
 <br />
 
 ## VoiceFinder
@@ -127,21 +127,21 @@ GitHub Actions, Docker-Compose, AWS EC2를 통해 CI/CD 파이프라인을 구�
 </details>
 <br>
 
-# 📈 ERD <a name = "erd"></a>
+# ERD <a name = "erd"></a>
 
 ![voicefinder-erd](https://github.com/user-attachments/assets/8fbc8d7f-17e9-4ed7-bb20-1229c841283f)
 <br>
 
-# 🔨 테스트 및 모니터링 <a name = "test"></a>
+# 테스트 및 모니터링 <a name = "test"></a>
 
 추후 작성 예정
 
 <br>
 
-# 💎 왜 이 기술을 사용했는가? <a name = "why"></a>
+# 왜 이 기술을 사용했는가? <a name = "why"></a>
 
 <details>
-   <summary> 본문 확인 (👈 Click)</summary>
+   <summary> 본문 확인 (Click)</summary>
 <br />
 
 추후 보완 예정
@@ -157,7 +157,7 @@ Refresh Token을 클라이언트에 전송하지 않고 서버에만 저장하�
 Spring Data JPA 사용시 복잡한 로직의 경우 쿼리 문자열이 상당히 길어집니다.  
 이러한 문제를 해결하기 위해 Querydsl을 도입해 동적인 쿼리 작성을 편리하게 할 수 있도록 했습니다.
 또, 문자가 아닌 코드로 쿼리를 작성함으로써 컴파일 시점에 문법 오류를 쉽게 확인할 수 있었습니다.
-
+특히 프로젝트에서 캠페인을 종료일이 얼마 안남은 순서대로 정렬하면서, 페이징과 검색 기능까지 수행하기 위해서는 Querydsl을 사용해야겠다는 생각이 들어서 해당 기술을 도입했습니다.
 <br>
 
 ## GitHub Actions
@@ -168,10 +168,10 @@ CI/CD 파이프라인을 구축하기 위해 GitHub Actions를 사용했습니�
 
 <br>
 
-# 🚀 리팩토링 & 성능 개선 <a name = "refactoring"></a>
+# 리팩토링 & 성능 개선 <a name = "refactoring"></a>
 
 <details>
-   <summary> 본문 확인 (👈 Click)</summary>
+   <summary> 본문 확인 (Click)</summary>
 <br />
 
 진행중
