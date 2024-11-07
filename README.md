@@ -48,9 +48,8 @@
 - [아키텍처](#structure)
 - [결과물](#outputs)
 - [ERD](#erd)  
-- [테스트 및 모니터링](#test)
 - [왜 이 기술을 사용했는가?](#why)
-- [리팩토링 & 성능 개선](#refactoring)
+
 
 <br>
 
@@ -132,19 +131,11 @@ GitHub Actions, Docker-Compose, AWS EC2를 통해 CI/CD 파이프라인을 구�
 ![voicefinder-erd](https://github.com/user-attachments/assets/8fbc8d7f-17e9-4ed7-bb20-1229c841283f)
 <br>
 
-# 테스트 및 모니터링 <a name = "test"></a>
-
-추후 작성 예정
-
-<br>
-
 # 왜 이 기술을 사용했는가? <a name = "why"></a>
 
 <details>
    <summary> 본문 확인 (Click)</summary>
 <br />
-
-추후 보완 예정
 
 ## Refresh Token - Redis
 Refresh Token을 구현하는 과정에서 구현 방식과 Token의 저장 위치에 관해 많은 고민을 했습니다.
@@ -167,23 +158,4 @@ CI/CD 파이프라인을 구축하기 위해 GitHub Actions를 사용했습니�
 </details>
 
 <br>
-
-# 리팩토링 & 성능 개선 <a name = "refactoring"></a>
-
-<details>
-   <summary> 본문 확인 (Click)</summary>
-<br />
-
-진행중
-  
-## 무중단 배포
-
-## QueryDsl 성능 개선
-
-## AOP
-
-## 테스트 코드
-
-
-</details>
 
